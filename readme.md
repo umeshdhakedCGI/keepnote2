@@ -89,7 +89,7 @@ The folders and files you see in this repositories is how it is expected to be i
 
 1. Clone the base boilerplate in the folder **assignment-solution-step2** of your local machine
     
-    `git clone https://gitlab-cts.stackroute.in/stack_java_keep/KeepNote-Step2-Boilerplate.git assignment-solution-step2`
+    `git clone https://gitlab.stackroute.in/stack_java_keep/KeepNote-Step2-Boilerplate.git assignment-solution-step2`
     
 2. Navigate to the assignment-solution-step2 folder
 
@@ -103,7 +103,7 @@ The folders and files you see in this repositories is how it is expected to be i
 
 5. Add your new repository reference as remote
 
-     `git remote add origin https://gitlab-cts.stackroute.in/{{yourusername}}/assignment-solution-step2.git`
+     `git remote add origin https://gitlab.stackroute.in/{{yourusername}}/assignment-solution-step2.git`
 
      **Note: {{yourusername}} should be replaced by your username from gitlab**
 
