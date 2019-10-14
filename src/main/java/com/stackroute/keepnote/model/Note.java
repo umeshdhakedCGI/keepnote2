@@ -13,69 +13,63 @@ import java.time.LocalDateTime;
  */
 @Entity
 public class Note {
+    @Id
+    private int noteId;
+    private String noteTitle;
+    private String noteContent;
+    private String noteStatus;
+    private LocalDateTime createdAt;
 
-	@Id
-	int Id;
-	String Title;
-	String Content;
-	String Status;
-	LocalDateTime CreatedAt;
+    public Note() {
 
+    }
 
+    public Note(int noteId, String noteTitle, String noteContent, String noteStatus, LocalDateTime createdAt) {
+        this.noteId = noteId;
+        this.noteTitle = noteTitle;
+        this.noteContent = noteContent;
+        this.noteStatus = noteStatus;
+        this.createdAt = createdAt;
+    }
 
-	public Note() {
+    public int getNoteId() {
+        return noteId;
+    }
 
-	}
+    public void setNoteId(int noteId) {
+        this.noteId = noteId;
+    }
 
-	public Note(int i, String string, String string2, String string3, LocalDateTime localDate) {
-this.Id=i;
-this.Title=string;
-this.Content=string2;
-this.Status=string3;
-this.CreatedAt=localDate;
-	}
+    public String getNoteTitle() {
+        return noteTitle;
+    }
 
-	public int getNoteId() {
+    public void setNoteTitle(String noteTitle) {
+        this.noteTitle = noteTitle;
+    }
 
-		return Id;
-	}
+    public String getNoteContent() {
+        return noteContent;
+    }
 
-	public String getNoteTitle() {
+    public void setNoteContent(String noteContent) {
+        this.noteContent = noteContent;
+    }
 
-		return Title;
-	}
+    public String getNoteStatus() {
+        return noteStatus;
+    }
 
-	public String getNoteContent() {
+    public void setNoteStatus(String noteStatus) {
+        this.noteStatus = noteStatus;
+    }
 
-		return Content;
-	}
+    public LocalDateTime getCreatedAt() {
+        return createdAt;
+    }
 
-	public String getNoteStatus() {
-
-		return Status;
-	}
-
-	public void setNoteId(int parseInt) {
-	this.Id=parseInt;
-	}
-
-	public void setNoteTitle(String parameter) {
-		this.Title=parameter;
-
-	}
-
-	public void setNoteContent(String parameter) {
-		this.Content=parameter;
-
-	}
-
-	public void setNoteStatus(String parameter) {
-		this.Status=parameter;
-
-	}
-
-	public void setCreatedAt(LocalDateTime now) {
-		this.CreatedAt=now;
-	}
+    public void setCreatedAt(LocalDateTime createdAt) {
+        this.createdAt = createdAt;
+    }
 
 }

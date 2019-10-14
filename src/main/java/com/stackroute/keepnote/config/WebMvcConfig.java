@@ -3,6 +3,11 @@ package com.stackroute.keepnote.config;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
+import org.springframework.http.MediaType;
+import org.springframework.validation.Validator;
+import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
+import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
@@ -16,6 +21,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
  * @EnableWebMvc - Adding this annotation to an @Configuration class imports the Spring MVC 
  * 				   configuration from WebMvcConfigurationSupport 
  * */
+//@Import(ApplicationContextConfig.class)
 @EnableWebMvc
 @Configuration
 @ComponentScan(basePackages = "com.stackroute.keepnote")
@@ -33,6 +39,17 @@ public class WebMvcConfig implements WebMvcConfigurer {
 		viewResolver.setSuffix(".jsp");
 		return viewResolver;
 	}
+
+
+//	@Override
+//	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+//		configurer.parameterName("mediaType").ignoreAcceptHeader(true).defaultContentType(MediaType.APPLICATION_JSON).mediaType("xml", MediaType.APPLICATION_XML).mediaType("json", MediaType.APPLICATION_JSON);
+//	}
+//
+//	@Bean(name = "validator")
+//	public Validator validator() {
+//		return new LocalValidatorFactoryBean();
+//	}
 
 
 }

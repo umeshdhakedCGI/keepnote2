@@ -3,6 +3,7 @@ package com.stackroute.keepnote.dao;
 import java.util.Iterator;
 import java.util.List;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
 import com.stackroute.keepnote.model.Note;
@@ -23,66 +24,85 @@ import org.springframework.transaction.annotation.Transactional;
  * */
 @Repository
 @Transactional
-@Component
 public class NoteDAOImpl implements NoteDAO {
+    private SessionFactory sessionFactory;
 
-	/*
-	 * Autowiring should be implemented for the SessionFactory.
-	 */
+    /*
+     * Autowiring should be implemented for the SessionFactory.
+     */
+    @Autowired
 
-	public SessionFactory sessionFactory;
+    public NoteDAOImpl(SessionFactory sessionFactory) {
 
-	@Autowired
-	public NoteDAOImpl(SessionFactory sessionFactory) {
-		this.sessionFactory=sessionFactory;
-	}
+        this.sessionFactory = sessionFactory;
+    }
 
+    /*
+     * Save the note in the database(note) table.
+     */
 
-	/*
-	 * Save the note in the database(note) table.
-	 */
+    public boolean saveNote(Note note) {
+        Session session = sessionFactory.getCurrentSession();
+        session.save(note);
+        session.flush();
+        return true;
 
-	public boolean saveNote(Note note) {
-		return false;
+    }
 
-	}
+    /*
+     * Remove the note from the database(note) table.
+     */
 
-	/*
-	 * Remove the note from the database(note) table.
-	 */
+    public boolean deleteNote(int noteId) {
+        Session session = sessionFactory.getCurrentSession();
+        String queryStr = "from Note where noteId= :id";
+        Query query = session.createQuery(queryStr);
+        query.setParameter("id", noteId);
+        Note note = (Note) query.uniqueResult();
+        session.delete(note);
+        session.flush();
+        return true;
 
-	public boolean deleteNote(int noteId) {
-		return false;
+    }
 
-	}
+    /*
+     * retrieve all existing notes sorted by created Date in descending
+     * order(showing latest note first)
+     */
 
-	/*
-	 * retrieve all existing notes sorted by created Date in descending
-	 * order(showing latest note first)
-	 */
-	public List<Note> getAllNotes() {
-		System.out.println("we were here");
-		String hql="select count(*) from Note";
-		Query query = sessionFactory.openSession().createQuery(hql);
-		System.out.println( ((long) query.uniqueResult()) );
+    public List<Note> getAllNotes() {
 
+        Session session = sessionFactory.getCurrentSession();
+        // Note notes1=null;
+        String queryStr = "from Note order by noteId";
+        List<Note> noteList = session.createQuery(queryStr).getResultList();
+        session.flush();
+        return noteList;
 
-		return null;
-
-	}
+    }
 
 	/*
 	 * retrieve specific note from the database(note) table
 	 */
-	public Note getNoteById(int noteId) {
-		return null;
+    public Note getNoteById(int noteId) {
+        Session session = sessionFactory.getCurrentSession();
+        String queryStr = "from Note where noteId= :id";
+        Query query = session.createQuery(queryStr);
+        query.setParameter("id", noteId);
+        Note note = (Note) query.uniqueResult();
+        session.flush();
+        return note;
 
-	}
+    }
 
-	/* Update existing note */
+    /* Update existing note */
+
 
 	public boolean UpdateNote(Note note) {
-		return false;
+        Session session = sessionFactory.getCurrentSession();
+        session.update(note);
+        session.flush();
+        return true;
 
 	}
 
