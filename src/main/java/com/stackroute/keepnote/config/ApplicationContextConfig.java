@@ -46,7 +46,6 @@ public class ApplicationContextConfig {
 
 	@Bean
 	public DataSource dataSource() throws SQLException {
-
         BasicDataSource basicDataSource = new BasicDataSource();
         basicDataSource.setDriverClassName("com.mysql.jdbc.Driver");
         basicDataSource.setUrl("jdbc:mysql://localhost:3306/NotesDB");
