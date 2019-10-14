@@ -61,7 +61,13 @@ public class NoteDAOImpl implements NoteDAO {
 	 * order(showing latest note first)
 	 */
 	public List<Note> getAllNotes() {
-			return null;
+		System.out.println("we were here");
+		String hql="select count(*) from Note";
+		Query query = sessionFactory.openSession().createQuery(hql);
+		System.out.println( ((long) query.uniqueResult()) );
+
+
+		return null;
 
 	}
 
