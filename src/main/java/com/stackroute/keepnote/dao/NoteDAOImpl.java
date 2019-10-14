@@ -1,10 +1,16 @@
 package com.stackroute.keepnote.dao;
 
+import java.util.Iterator;
 import java.util.List;
 
 import org.hibernate.SessionFactory;
 
 import com.stackroute.keepnote.model.Note;
+import org.hibernate.query.Query;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /*
  * This class is implementing the NoteDAO interface. This class has to be annotated with @Repository
@@ -15,16 +21,22 @@ import com.stackroute.keepnote.model.Note;
  * 					transaction. The database transaction happens inside the scope of a persistence 
  * 					context.  
  * */
-
+@Repository
+@Transactional
+@Component
 public class NoteDAOImpl implements NoteDAO {
 
 	/*
 	 * Autowiring should be implemented for the SessionFactory.
 	 */
 
-	public NoteDAOImpl(SessionFactory sessionFactory) {
+	public SessionFactory sessionFactory;
 
+	@Autowired
+	public NoteDAOImpl(SessionFactory sessionFactory) {
+		this.sessionFactory=sessionFactory;
 	}
+
 
 	/*
 	 * Save the note in the database(note) table.
@@ -49,7 +61,7 @@ public class NoteDAOImpl implements NoteDAO {
 	 * order(showing latest note first)
 	 */
 	public List<Note> getAllNotes() {
-		return null;
+			return null;
 
 	}
 

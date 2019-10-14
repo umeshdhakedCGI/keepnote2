@@ -54,6 +54,7 @@ public class NoteControllerTest {
 	
 	@Test
     public void testMockCreation(){
+		System.out.println("hbuhb");
         assertNotNull(noteDao);
         assertNotNull(noteController);
         

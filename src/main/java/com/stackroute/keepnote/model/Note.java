@@ -1,5 +1,8 @@
 package com.stackroute.keepnote.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.swing.*;
 import java.time.LocalDateTime;
 
 /*
@@ -8,54 +11,71 @@ import java.time.LocalDateTime;
  * any Java objects annotated with the @Entity annotation. If it finds any, then it will begin the 
  * process of looking through that particular Java object to recreate it as a table in your database.
  */
-
+@Entity
 public class Note {
+
+	@Id
+	int Id;
+	String Title;
+	String Content;
+	String Status;
+	LocalDateTime CreatedAt;
+
+
 
 	public Note() {
 
 	}
 
 	public Note(int i, String string, String string2, String string3, LocalDateTime localDate) {
+this.Id=i;
+this.Title=string;
+this.Content=string2;
+this.Status=string3;
+this.CreatedAt=localDate;
 	}
 
 	public int getNoteId() {
 
-		return 0;
+		return Id;
 	}
 
 	public String getNoteTitle() {
 
-		return null;
+		return Title;
 	}
 
 	public String getNoteContent() {
 
-		return null;
+		return Content;
 	}
 
 	public String getNoteStatus() {
 
-		return null;
+		return Status;
 	}
 
 	public void setNoteId(int parseInt) {
-
+	this.Id=parseInt;
 	}
 
 	public void setNoteTitle(String parameter) {
+		this.Title=parameter;
 
 	}
 
 	public void setNoteContent(String parameter) {
+		this.Content=parameter;
 
 	}
 
 	public void setNoteStatus(String parameter) {
+		this.Status=parameter;
 
 	}
 
 	public void setCreatedAt(LocalDateTime now) {
-
+		this.CreatedAt=now;
 	}
 
 }

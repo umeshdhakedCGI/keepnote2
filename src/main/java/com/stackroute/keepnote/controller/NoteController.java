@@ -1,11 +1,38 @@
 package com.stackroute.keepnote.controller;
 
+import com.stackroute.keepnote.dao.NoteDAO;
+import com.stackroute.keepnote.dao.NoteDAOImpl;
+import com.stackroute.keepnote.model.Note;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
 /*
  * Annotate the class with @Controller annotation.@Controller annotation is used to mark 
  * any POJO class as a controller so that Spring can recognize this class as a Controller
  */
-
+@Controller
 public class NoteController {
+
+	NoteDAO noteDAO;
+
+	@Autowired
+	public NoteController(NoteDAO noteDAO){
+		this.noteDAO = noteDAO;
+	}
+
+
+	@RequestMapping("/")
+	public ModelAndView index(){
+		noteDAO.getAllNotes();
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName("index");
+		return mv;
+	}
+
+
+
 	/*
 	 * From the problem statement, we can understand that the application requires
 	 * us to implement the following functionalities.
